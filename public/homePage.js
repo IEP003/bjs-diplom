@@ -32,11 +32,11 @@ money.addMoneyCallback = (addMoney) => {
     function callback(res) {
         if(res.success == true){
             message = `Операция по пополнению баланса прошла успешно`;
+            ProfileWidget.showProfile(res.data);
         } else if (res.success === false){
             message = res.error; 
         }
         money.setMessage(res.success, message);
-        ProfileWidget.showProfile(res.data);
     }  
 }
 money.conversionMoneyCallback = (convertMoney) => {
@@ -44,11 +44,11 @@ money.conversionMoneyCallback = (convertMoney) => {
     function callback(res){
         if(res.success == true){
             message = `Операция по конвертации прошла успешно`;
+            ProfileWidget.showProfile(res.data);
         } else if (res.success === false){
             message = res.error;
         }
         money.setMessage(res.success, message);
-        ProfileWidget.showProfile(res.data);
     }
 }
 money.sendMoneyCallback = (transferMoney) => {
@@ -56,11 +56,11 @@ money.sendMoneyCallback = (transferMoney) => {
     function callback(res){
         if(res.success == true){
             message = `Перевод выполнен успешно`;
+            ProfileWidget.showProfile(res.data);
         } else if (res.success === false){
             message = res.error;
         }
         money.setMessage(res.success, message);
-        ProfileWidget.showProfile(res.data);
     }
 }
 
