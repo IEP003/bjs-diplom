@@ -75,14 +75,14 @@ favorites.addUserCallback = (users) =>{
     ApiConnector.addUserToFavorites(users, callback);
     function callback(data){
         console.log(data)
-        if(data.success == true){
+        if(data.success){
+            favorites.clearTable();
+            favorites.fillTable(data.data);
+            money.updateUsersList(data.data); 
             message = `Данный пользователь добавлен в "Адресную книгу"`;
-        } else if (data.success == false){
+        } else if (!data.success){
             message = data.error;
         }
-        favorites.clearTable();
-        favorites.fillTable(data.data);
-        money.updateUsersList(data.data); 
         favorites.setMessage(data.success, message);
     }
 }
@@ -90,14 +90,14 @@ favorites.removeUserCallback = (users) => {
     ApiConnector.removeUserFromFavorites(users, callback);
     function callback(data){
         console.log(data)
-        if(data.success == true){
+        if(data.success){
             message = `Данный пользователь удален из "Адресной книги"`;
-        } else if (data.success == false){
+            favorites.clearTable();
+            favorites.fillTable(data.data);
+            money.updateUsersList(data.data);
+        } else if (!data.success){
             message = data.error;
-        }
-        favorites.clearTable();
-        favorites.fillTable(data.data);
-        money.updateUsersList(data.data); 
+        } 
         favorites.setMessage(data.success, message);
     }
 }
